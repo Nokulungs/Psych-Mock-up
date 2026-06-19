@@ -14,9 +14,8 @@
   <style>
     @font-face {
       font-family: 'Avander';
-      /* Ensure the filename exactly matches your uploaded file */
       src: url('Avander-Regular.woff2') format('woff2'),
-        url('Avander.ttf') format('truetype');
+           url('Avander.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -30,11 +29,11 @@
       --parchment: #FAF4F0;
       --parchment-dk: #F2E9E1;
       --ink: #2A1215;
+      --white: #FFFFFF;
 
-      /* Advanced Glassmorphism Layering */
       --glass-surface: rgba(250, 244, 240, 0.4);
-      --glass-border: rgba(198, 167, 146, 0.22);
-      --glass-shadow: rgba(42, 18, 21, 0.04);
+      --glass-border: rgba(93, 23, 29, 0.12);
+      --glass-shadow: rgba(93, 23, 29, 0.03);
 
       --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Poppins', system-ui, sans-serif;
@@ -84,25 +83,7 @@
       cursor: pointer;
     }
 
-    /* Custom Minimalist Scrollbar */
-    ::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--parchment);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--tan);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--bordeaux);
-    }
-
-    /* ─── IMMERSIVE AMBIENT LAYER ────────────────── */
+    /* ─── AMBIENT BACKGROUND LAYER ────────────────── */
     .ambient-bg {
       position: absolute;
       width: 100%;
@@ -119,7 +100,7 @@
       width: 70vw;
       height: 70vw;
       max-width: 900px;
-      background: radial-gradient(circle, rgba(198, 167, 146, 0.2) 0%, rgba(250, 244, 240, 0) 70%);
+      background: radial-gradient(circle, rgba(93, 23, 29, 0.05) 0%, rgba(250, 244, 240, 0) 70%);
       top: -10vw;
       right: -10vw;
     }
@@ -134,135 +115,134 @@
       left: -10vw;
     }
 
-    .orb-3 {
-      position: absolute;
-      width: 60vw;
-      height: 60vw;
-      max-width: 800px;
-      background: radial-gradient(circle, rgba(198, 167, 146, 0.15) 0%, rgba(250, 244, 240, 0) 70%);
-      bottom: 10vh;
-      right: -20vw;
+    /* ─── NAVIGATION ARCHITECTURE ───────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center; 
+      justify-content: space-between;
+      padding: 0.35rem clamp(1.5rem, 6vw, 6.5rem); 
+      background: rgba(250, 244, 240, 0.95);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-bottom: 1px solid var(--glass-border);
     }
 
-  /* ─── CLEAN NAVIGATION ARCHITECTURE (NO DUPLICATES) ───────────────── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center; 
-  justify-content: space-between;
-  padding: 0.5rem clamp(2rem, 6vw, 6.5rem);
-  background: rgba(250, 244, 240, 0.95);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border-bottom: 1px solid var(--glass-border);
-}
+    .nav-logo {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center;
+      gap: 2px;
+      text-decoration: none;
+      z-index: 110; /* Stays above mobile menu toggle */
+    }
 
-/* Forces the container to stack everything vertically */
-.nav-logo {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center;
-  gap: 4px;
-  text-decoration: none;
-}
-.nav-logo img {
-  width: 70px;
-  filter: drop-shadow(0 2px 4px rgba(93, 23, 29, 0.02));
-}
+    .logo-badge-container {
+      width: 50px;  
+      height: 38px; 
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
-/* Crops into just the top emblem portion of your image asset */
-.logo-badge-container {
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
+    .logo-badge-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-.logo-badge-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 4px rgba(93, 23, 29, 0.02));
-}
+    .logo-text-stack {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
 
-/* Text Wrapping Structure */
-.logo-text-stack {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
+    .logo-name {
+      font-family: var(--accent) !important;
+      font-weight: 700;
+      font-size: 1rem; 
+      color: var(--bordeaux);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      display: block;
+    }
 
-.logo-name {
-  font-family: var(--accent) !important; /* Forces your local Avander requirement */
-  font-weight: 400;
-  font-size: 1.05rem;
-  color: var(--bordeaux);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  display: block;
-}
+    .logo-title {
+      font-family: var(--sans) !important;
+      font-weight: 700;
+      font-size: 0.52rem; 
+      color: var(--tan);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      line-height: 1.1;
+      margin-top: 1px; 
+      display: block;
+    }
 
-.logo-title {
-  font-family: var(--sans) !important; /* Keeps 'Clinical Psychologist' crisp in Poppins */
-  font-weight: 400;
-  font-size: 0.58rem;
-  color: var(--tan);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  line-height: 1.3;
-  margin-top: 0.1rem;
-  display: block;
-}
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
 
-/* Nav Link Alignment Rules */
-.nav-links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-}
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      transition: all 0.3s ease;
+    }
 
-.nav-links a {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.65;
-  transition: all 0.3s ease;
-}
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--bordeaux);
+    }
 
-.nav-links a:hover {
-  opacity: 1;
-  color: var(--bordeaux);
-}
+    .nav-links a.nav-cta {
+      opacity: 1;
+      color: var(--bordeaux);
+      border: 1px solid var(--bordeaux);
+      padding: 0.5rem 1.2rem;
+      transition: all 0.3s ease;
+    }
 
-.nav-cta {
-  border-bottom: 1px solid var(--bordeaux);
-  padding-bottom: 2px;
-}
+    .nav-links a.nav-cta:hover {
+      background: var(--bordeaux);
+      color: var(--parchment);
+    }
 
-/* Responsive Scaling Parameters */
-@media (max-width: 992px) {
-  .logo-badge-container {
-    width: 42px;
-    height: 42px;
-  }
-  .logo-name {
-    font-size: 0.9rem;
-  }
-}
-    /* ─── EDITORIAL HERO SECTION ────────────────── */
+    /* Cute Functional Hamburger Icon Trigger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 22px;
+      height: 16px;
+      z-index: 110;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: var(--bordeaux);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      transform-origin: left center;
+    }
+
+    /* ─── HERO SECTION ──────────────────────────── */
     .hero {
       min-height: 100svh;
       display: flex;
       align-items: center;
-      padding: 120px clamp(2rem, 6vw, 6.5rem) 4rem;
+      padding: 140px clamp(1.5rem, 6vw, 6.5rem) 4rem;
       max-width: var(--max);
       margin: 0 auto;
       gap: 4rem;
@@ -277,47 +257,24 @@ nav {
       position: relative;
     }
 
-    .eyebrow {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--tan);
-      margin-bottom: 1.5rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .eyebrow::after {
-      content: '';
-      width: 30px;
-      height: 1px;
-      background: var(--tan);
-    }
-
     .hero-title {
-      font-family: var(--sans);
-      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
-      font-weight: 600;
-      line-height: 1.15;
+      font-family: var(--accent);
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.2;
       color: var(--bordeaux);
-      margin-bottom: 2rem;
-    }
-
-    .hero-title span {
-      font-style: italic;
-      color: var(--tan);
+      margin-bottom: 1.5rem;
     }
 
     .hero-desc {
       font-size: 1.1rem;
-      opacity: 0.8;
-      max-width: 44ch;
-      margin-bottom: 3.5rem;
+      opacity: 0.85;
+      max-width: 46ch;
+      margin-bottom: 3rem;
+      border-left: 2px solid var(--bordeaux);
+      padding-left: 1.5rem;
     }
 
-    /* Primary Interactive Element Style */
     .btn-solid {
       display: inline-flex;
       align-items: center;
@@ -330,14 +287,7 @@ nav {
       letter-spacing: 0.2em;
       text-transform: uppercase;
       border: 1px solid var(--bordeaux);
-      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
-    }
-
-    .btn-solid svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .btn-solid:hover {
@@ -346,271 +296,214 @@ nav {
       transform: translateY(-2px);
     }
 
-    .btn-solid:hover svg {
-      transform: translateX(4px);
-    }
-
-    /* Asymmetric Hero Art Frame */
     .hero-art-frame {
       position: relative;
       width: 100%;
       aspect-ratio: 0.85 / 1;
       background: var(--parchment-dk);
-      border-radius: 200px 200px 4px 4px;
+      border-radius: 120px 120px 4px 4px;
+      border: 1px solid var(--glass-border);
       overflow: hidden;
-      box-shadow: 0 30px 60px rgba(42, 18, 21, 0.08);
+      box-shadow: 0 30px 60px rgba(93, 23, 29, 0.05);
     }
 
     .hero-art-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: sepia(15%) contrast(1.02);
     }
 
-    .hero-floating-card {
-      position: absolute;
-      bottom: -2rem;
-      left: -2rem;
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      padding: 2rem;
-      max-width: 280px;
-      box-shadow: 0 15px 35px var(--glass-shadow);
-    }
-
-    .hero-floating-card p {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--bordeaux);
-      line-height: 1.5;
-    }
-
-    /* ─── DYNAMIC CONTENT SECTION LAYOUTS ───────── */
+    /* ─── GENERAL LAYOUT SECTIONS ────────────────── */
     section {
-      padding: clamp(5rem, 8vw, 8rem) clamp(2rem, 6vw, 6.5rem);
+      padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6.5rem);
       max-width: var(--max);
       margin: 0 auto;
     }
 
     .section-header-wrap {
-      margin-bottom: 4.5rem;
-    }
-
-    .section-num {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--tan);
-      font-family: var(--sans);
-      letter-spacing: 0.1em;
-      display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 1rem;
     }
 
     .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-family: var(--accent);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       color: var(--bordeaux);
       font-weight: 400;
     }
 
-    /* ─── OVERLAPPED INTRO BANNER ────────────────── */
+    /* ─── SECTION: INTRODUCTION ────────────────── */
     .intro-block {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 5rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
       align-items: center;
-    }
-
-    .intro-statement {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
-      line-height: 1.35;
-      color: var(--bordeaux);
     }
 
     .intro-paragraphs p {
-      opacity: 0.8;
+      opacity: 0.85;
       margin-bottom: 1.5rem;
     }
 
-    /* ─── INTERACTIVE CLINICAL SWITCHER ──────────── */
-    .clinical-showcase {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 4rem;
-      margin-top: 2rem;
-    }
-
-    .switch-tabs {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .tab-trigger {
-      text-align: left;
-      padding: 1.25rem 1.5rem;
-      border-left: 2px solid var(--tan-lt);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--ink);
-      opacity: 0.6;
-      transition: all 0.3s ease;
-    }
-
-    .tab-trigger.active {
-      opacity: 1;
-      border-left-color: var(--bordeaux);
-      color: var(--bordeaux);
-      background: rgba(93, 23, 29, 0.02);
-    }
-
-    .showcase-display {
-      background: var(--glass-surface);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+    .intro-art-frame {
+      width: 100%;
+      aspect-ratio: 1.2 / 1;
+      border-radius: 4px 100px 4px 4px;
+      overflow: hidden;
       border: 1px solid var(--glass-border);
-      padding: 3rem;
-      box-shadow: 0 20px 45px var(--glass-shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 380px;
     }
 
-    .showcase-content {
-      display: none;
+    .intro-art-frame img {
+      width: 100%;
+      height: 100%;
     }
 
-    .showcase-content.active {
-      display: block;
-      animation: fadeIn 0.5s ease forwards;
+    /* ─── SECTION: AREAS OF WORK (GRID EDITIONS) ─── */
+    .work-section-layout {
+      display: block; 
+      width: 100%;
     }
 
-    .showcase-content h3 {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      color: var(--bordeaux);
-      margin-bottom: 1.25rem;
-      font-weight: 400;
-    }
-
-    /* ─── TRUST ARCHITECTURE: BIOGRAPHY ──────────── */
-    .bio-layout {
+    .work-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 5rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      width: 100%;
+    }
+
+    .work-card {
+      background: #ffffff;
+      border: 1px solid var(--glass-border);
+      border-left: 4px solid var(--bordeaux); 
+      padding: 2.2rem 2rem;
+      min-height: 130px; 
+      display: flex;
+      align-items: center; 
+      position: relative;
+      overflow: hidden;
+      border-radius: 0px 4px 4px 0px; 
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .work-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, rgba(93, 23, 29, 0.04) 0%, rgba(93, 23, 29, 0) 100%);
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .work-card:hover {
+      transform: translateX(4px); 
+      border-color: var(--bordeaux);
+      box-shadow: 0 10px 30px rgba(93, 23, 29, 0.06);
+    }
+
+    .work-card:hover::before {
+      opacity: 1; 
+    }
+
+    .work-card h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--bordeaux);
+      font-weight: 500;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2; 
+    }
+
+    /* ─── SECTION: APPROACH ────────────────────── */
+    .approach-block {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 4rem;
       align-items: center;
     }
 
-    .bio-visual-stack {
-      position: relative;
+    .approach-paragraphs p {
+      opacity: 0.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .approach-art-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px double var(--bordeaux);
+      padding: 8px;
+    }
+
+    .approach-art-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    /* ─── SECTION: ABOUT ───────────────────────── */
+    .bio-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
 
     .bio-main-frame {
-      width: 85%;
+      width: 100%;
       aspect-ratio: 1 / 1.1;
-      background: #fff;
-      padding: 0.75rem;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.04);
+      border-radius: 4px 4px 120px 4px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
     }
 
     .bio-main-frame img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
     }
 
-    .badge-capsule {
-      position: absolute;
-      top: -1.5rem;
-      right: 4rem;
-      background: var(--bordeaux);
-      color: var(--parchment);
-      padding: 0.6rem 1.2rem;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      box-shadow: 0 10px 20px rgba(93, 23, 29, 0.15);
-    }
-
-    .badge-capsule-secondary {
-      position: absolute;
-      bottom: 2rem;
-      right: 0;
-      background: var(--parchment-dk);
-      border: 1px solid var(--tan);
-      color: var(--ink);
-      padding: 0.6rem 1.2rem;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    /* Elegant Academic Journey Timeline */
-    .journey-timeline {
-      margin-top: 3rem;
-      border-top: 1px solid var(--tan-lt);
-      padding-top: 2rem;
-    }
-
-    .journey-timeline h4 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      color: var(--bordeaux);
-      font-weight: 500;
-    }
-
-    .timeline-row {
+    .registration-box {
+      margin-top: 2rem;
+      border-top: 1px solid var(--bordeaux);
+      padding-top: 1.5rem;
       display: flex;
-      gap: 2rem;
-      margin-bottom: 1rem;
+      gap: 3rem;
     }
 
-    .timeline-year {
-      font-weight: 600;
+    .reg-item span {
+      display: block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--tan);
-      font-size: 0.85rem;
-      min-width: 60px;
+      font-weight: 600;
     }
 
-    .timeline-desc {
-      font-size: 0.9rem;
-      opacity: 0.8;
+    .reg-item p {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--bordeaux);
     }
 
-    /* ─── SECURE PORTAL & INTAKE AREA ───────────── */
+    /* ─── SECTION: CONTACT & INTAKE PORTAL ──────── */
     .portal-container {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.4) 0%, rgba(242, 233, 225, 0.2) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.4);
       border: 1px solid var(--glass-border);
       box-shadow: 0 30px 70px var(--glass-shadow);
-      padding: clamp(3rem, 6vw, 5rem);
+      padding: clamp(1.5rem, 5vw, 4rem);
       display: grid;
       grid-template-columns: 1fr 1.2fr;
-      gap: 4.5rem;
-    }
-
-    .portal-info h3 {
-      font-family: var(--serif);
-      font-size: 2rem;
-      color: var(--bordeaux);
-      margin-bottom: 1.5rem;
-      font-weight: 400;
+      gap: 4rem;
     }
 
     .portal-info p {
       font-size: 0.95rem;
-      opacity: 0.75;
-      margin-bottom: 3rem;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
     }
 
     .meta-contact-list {
@@ -625,14 +518,6 @@ nav {
       gap: 1rem;
     }
 
-    .meta-contact-item svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--tan);
-      margin-top: 0.25rem;
-      flex-shrink: 0;
-    }
-
     .meta-contact-item div span {
       display: block;
       font-size: 0.65rem;
@@ -644,12 +529,11 @@ nav {
 
     .meta-contact-item div p,
     .meta-contact-item div a {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--ink);
-      opacity: 0.85;
     }
 
-    /* Clean Input Engineering */
+    /* Precision Inline Grid Form Control */
     .form-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -670,40 +554,46 @@ nav {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--ink);
-      opacity: 0.5;
+      color: var(--bordeaux);
       margin-bottom: 0.5rem;
     }
 
+    /* REFINED FORM INPUT FIELDS WITH GOLD TOUCH */
     .form-field input,
     .form-field textarea {
-      background: rgba(255, 255, 255, 0.4);
-      border: none;
-      border-bottom: 1px solid var(--tan);
-      padding: 0.75rem 0.5rem;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--tan-lt);
+      padding: 0.85rem 1.2rem;
       font-family: var(--sans);
       font-size: 0.95rem;
       color: var(--ink);
-      transition: all 0.3s ease;
+      border-radius: 8px; 
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
+    /* Elegant gold aura when field is selected */
     .form-field input:focus,
     .form-field textarea:focus {
       outline: none;
-      border-bottom-color: var(--bordeaux);
-      background: rgba(255, 255, 255, 0.7);
+      border-color: var(--bordeaux);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(198, 167, 146, 0.25), 
+                  inset 0 1px 2px rgba(93, 23, 29, 0.02);
     }
 
     .form-field textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: none;
+    }
+
+    .form-layout .btn-solid {
+      border-radius: 8px;
     }
 
     .consent-checkbox {
       display: flex;
       gap: 0.75rem;
       align-items: flex-start;
-      margin-top: 1rem;
     }
 
     .consent-checkbox input {
@@ -713,15 +603,15 @@ nav {
 
     .consent-checkbox label {
       font-size: 0.75rem;
-      opacity: 0.6;
+      opacity: 0.7;
       line-height: 1.5;
     }
 
-    /* ─── SYSTEM UTILITY & ANIMATION ──────────────── */
+    /* ─── ANIMATION SYSTEM ──────────────────────── */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translateY(25px);
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .reveal.active {
@@ -729,83 +619,115 @@ nav {
       transform: none;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    /* ─── FOOTER REGION ──────────────────────────── */
+    /* ─── FOOTER ────────────────────────────────── */
     footer {
-      background: var(--ink);
+      background: var(--bordeaux);
       color: var(--parchment);
-      padding: 4rem clamp(2rem, 6vw, 6.5rem);
+      padding: 3rem clamp(1.5rem, 6vw, 6.5rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.75rem;
       letter-spacing: 0.1em;
-      border-top: 1px solid rgba(198, 167, 146, 0.1);
+      gap: 2rem;
     }
 
-    footer opacity {
-      opacity: 0.6;
-    }
-
-    /* ─── MEDIA QUERY OVERRIDES ─────────────────── */
+    /* ─── STYLISH CORE RESPONSIVE MEDIA QUERIES ─── */
     @media (max-width: 992px) {
-      .hero {
-        flex-direction: column;
-        padding-top: 140px;
-        text-align: center;
-        gap: 5rem;
+      .menu-toggle {
+        display: flex; /* Hamburger becomes responsive trigger button */
       }
 
-      .hero-title {
-        margin-left: auto;
-        margin-right: auto;
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden off-screen by default */
+        width: 75vw;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--white);
+        box-shadow: -10px 0 30px rgba(93, 23, 29, 0.05);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2.5rem;
+        padding: 3rem;
+        transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 105;
+      }
+
+      /* Trigger slide class built out via script engines */
+      .nav-links.mobile-open {
+        right: 0;
+      }
+
+      /* Hamburger transform animations into a neat close 'X' symbol */
+      .menu-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(2px, -2px);
+      }
+      .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      .menu-toggle.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(1px, 2px);
+      }
+
+      .hero {
+        flex-direction: column;
+        padding-top: 130px;
+        text-align: center;
+        gap: 3rem;
       }
 
       .hero-desc {
         margin-left: auto;
         margin-right: auto;
-      }
-
-      .btn-solid {
-        align-self: center;
-      }
-
-      .hero-floating-card {
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -1.5rem;
-        width: 85%;
+        border-left: none;
+        border-top: 2px solid var(--bordeaux);
+        padding-left: 0;
+        padding-top: 1rem;
       }
 
       .intro-block,
-      .clinical-showcase,
+      .approach-block,
       .bio-layout,
       .portal-container {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 3.5rem;
+      }
+
+      .intro-art-frame {
+        order: -1; /* Pushes introduction imagery above narrative on tablets */
       }
 
       .bio-main-frame {
-        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .work-grid {
+        grid-template-columns: 1fr; /* Complete single card stacks on devices */
       }
 
-      .badge-capsule {
-        right: 2rem;
+      /* FORM PIVOT POINT: Transforms from split side-by-side to a vertical single stack layout */
+      .form-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-field.full {
+        grid-column: span 1;
       }
 
-      .nav-links {
-        display: none;
+      .registration-box {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -813,248 +735,231 @@ nav {
 
 <body>
 
-  <!-- Ambient Backdrop -->
   <div class="ambient-bg">
     <div class="orb-1"></div>
     <div class="orb-2"></div>
-    <div class="orb-3"></div>
   </div>
 
-  <!-- Nav Frame -->
   <nav>
     <a class="nav-logo" href="#">
-      <img src="Badge.png" alt="Daniela Sounes — Clinical Psychologist" />
+      <div class="logo-badge-container">
+        <img src="Badge.png" alt="Emblem" />
+      </div>
       <div class="logo-text-stack">
         <span class="logo-name">Daniela Sounes</span>
         <span class="logo-title">Clinical Psychologist</span>
       </div>
     </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
+    
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#intro">Introduction</a></li>
       <li><a href="#work">Areas of Work</a></li>
       <li><a href="#approach">Approach</a></li>
-      <li><a href="#portal" class="nav-cta">Book Session</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#portal" class="nav-cta">Book Appointment</a></li>
     </ul>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
-  <!-- Editorial Hero -->
   <header class="hero">
     <div class="hero-content">
-      <span class="eyebrow">Johannesburg Practice</span>
-      <h1 class="hero-title">Perhaps understanding<br><span>is where we begin.</span></h1>
-      <p class="hero-desc">Thoughtful psychotherapy grounded in curiosity, reflection, and structural safety parameters.
-      </p>
-      <a href="#portal" class="btn-solid">
-        Book Session
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
+      <h1 class="hero-title">Perhaps understanding is where we begin.</h1>
+      <p class="hero-desc">Thoughtful psychotherapy grounded in curiosity, reflection, and understanding.</p>
+      <a href="#portal" class="btn-solid">Book Appointment</a>
     </div>
     <div class="hero-media">
       <div class="hero-art-frame">
-        <img src="image1.png" alt="Clinical Environment Texture Grid">
-      </div>
-      <div class="hero-floating-card">
-        <p>"A space to slow down and make sense of what may be happening."</p>
+        <img src="image1.png" alt="Daniela Sounes Creative Hero Spatial Asset">
       </div>
     </div>
   </header>
 
-  <!-- Section 1: Intro Narrative -->
-  <section id="about" class="reveal">
+  <section id="intro" class="reveal">
+    <div class="section-header-wrap">
+      <h2 class="section-title">Introduction</h2>
+    </div>
     <div class="intro-block">
-      <h2 class="intro-statement">You don't have to figure it out alone. Together, we look deeper.</h2>
       <div class="intro-paragraphs">
-        <p>At times, life can feel overwhelming, confusing, or difficult to navigate. You may find yourself facing
-          challenges that seem to endure despite your best efforts, struggling in relationships, feeling disconnected
-          from yourself, or carrying emotions that don't quite make sense.</p>
-        <p>Therapy is a space to slow down and make sense of what may be happening. Together, we can explore with
-          curiosity and care, developing a deeper understanding of what may be contributing to distress and what might
-          support meaningful change.</p>
-        <p>Seeking therapy is not only for times of crisis. It can also be an opportunity to get to know yourself
-          better, strengthen your relationships, and feel more present in your own life.</p>
+        <p>At times, life can feel overwhelming, confusing, or difficult to navigate. You may find yourself facing challenges that seem to endure despite your best efforts, struggling in relationships, feeling disconnected from yourself, or carrying emotions that don’t quite make sense.</p>
+        <p>Therapy is a space to slow down and make sense of what may be happening. Together, we can explore with curiosity and care, developing a deeper understanding of what may be contributing to distress and what might support meaningful change.</p>
+        <p>Seeking therapy is not only for times of crisis. It can also be an opportunity to get to know yourself better, strengthen your relationships, and feel more present in your own life.</p>
+      </div>
+      <div class="intro-art-frame">
+        <img src="image5.png" alt="Therapeutic Architectural Space Reference Asset">
       </div>
     </div>
   </section>
 
-  <!-- Section 2: Clinical Interactive Showcase -->
-  <section id="work" class="reveal" style="background: rgba(242, 233, 225, 0.3); max-width: 100%;">
-    <div style="max-width: var(--max); margin: 0 auto;">
-      <div class="section-header-wrap">
-        <span class="section-num">01 / Functional Specialties</span>
-        <h2 class="section-title">Areas of Clinical Work</h2>
-      </div>
-
-      <div class="clinical-showcase">
-        <div class="switch-tabs">
-          <button class="tab-trigger active" onclick="switchTab(event, 'tab-anxiety')">Anxiety & Emotional
-            Regulation</button>
-          <button class="tab-trigger" onclick="switchTab(event, 'tab-mood')">Mood Transitions & Depression</button>
-          <button class="tab-trigger" onclick="switchTab(event, 'tab-trauma')">Trauma & Complex Experiences</button>
-          <button class="tab-trigger" onclick="switchTab(event, 'tab-relational')">Relational Frameworks &
-            Identity</button>
-          <button class="tab-trigger" onclick="switchTab(event, 'tab-support')">Professional Burnout & Healthcare
-            Support</button>
+  <section id="work" class="reveal">
+    <div class="section-header-wrap">
+      <h2 class="section-title">Areas of Work</h2>
+    </div>
+    
+    <div class="work-section-layout">
+      <p style="opacity: 0.85; margin-bottom: 2.5rem; max-width: 70ch;">I work with a range of emotional and psychological difficulties, including more complex presentations, including:</p>
+      
+      <div class="work-grid">
+        <div class="work-card">
+          <h3>Anxiety, panic, and ongoing worry</h3>
         </div>
-
-        <div class="showcase-display">
-          <div id="tab-anxiety" class="showcase-content active">
-            <h3>Anxiety, panic, and ongoing worry</h3>
-            <p>Navigating emotional intensity, constant overwhelm, or feeling "stuck" in repetitive behavioral cycles.
-              We work to break down the internal stress responses to restore agency.</p>
-          </div>
-          <div id="tab-mood" class="showcase-content">
-            <h3>Low mood, depression, and feeling emotionally shut down</h3>
-            <p>Addressing persistent low motivation, feelings of detachment, fatigue, and major life transitions that
-              alter how you connect with everyday environments.</p>
-          </div>
-          <div id="tab-trauma" class="showcase-content">
-            <h3>Trauma and the lingering effects of difficult experiences</h3>
-            <p>Processing deep-seated historical trauma or recent distressing events within a structured, safe clinical
-              dynamic designed to unpack experiences safely.</p>
-          </div>
-          <div id="tab-relational" class="showcase-content">
-            <h3>Confusion in relationships or identity questions</h3>
-            <p>Evaluating repeated patterns in partnerships, complications in self-worth, and establishing clearer
-              structural boundary systems within personal networks.</p>
-          </div>
-          <div id="tab-support" class="showcase-content">
-            <h3>Psychological support for healthcare workers & burnout</h3>
-            <p>Specialized containment strategies for frontline professionals experiencing compassion fatigue, systemic
-              stress, and executive performance exhaustion.</p>
-          </div>
+        <div class="work-card">
+          <h3>Low mood, depression, and feeling emotionally shut down</h3>
+        </div>
+        <div class="work-card">
+          <h3>Trauma and the lingering effects of difficult experiences</h3>
+        </div>
+        <div class="work-card">
+          <h3>Emotional intensity, overwhelm, or feeling “stuck” in patterns</h3>
+        </div>
+        <div class="work-card">
+          <h3>Confusion in relationships or repeated relational difficulties</h3>
+        </div>
+        <div class="work-card">
+          <h3>Experiences that feel hard to explain or make sense of</h3>
+        </div>
+        <div class="work-card">
+          <h3>Stress, burnout, and major life transitions</h3>
+        </div>
+        <div class="work-card">
+          <h3>Questions around identity, self-worth, and direction</h3>
+        </div>
+        <div class="work-card">
+          <h3>Psychological support for healthcare workers</h3>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 3: The Clinician Profile -->
   <section id="approach" class="reveal">
+    <div class="section-header-wrap">
+      <h2 class="section-title">Approach</h2>
+    </div>
+    <div class="approach-block">
+      <div class="approach-paragraphs">
+        <p>My approach is based on the understanding that our experiences, relationships, and ways of coping are shaped by both our past and our present.</p>
+        <p>Sometimes we find ourselves repeating patterns, feeling stuck, or reacting in ways that do not fully make sense. While these experiences can be frustrating, they often carry important information about our emotional world and can begin to make sense when we have space to explore them more closely.</p>
+        <p>Therapy provides an opportunity to explore these experiences in a thoughtful and supportive environment. Rather than only focusing on what feels difficult, we try to understand what your experiences might be telling us about you, your relationships, and what you’ve been carrying over time.</p>
+        <p>I aim to offer a space that feels calm, respectful, and collaborative, where your story can be heard and explored at a pace that feels right for you.</p>
+      </div>
+      <div class="approach-art-frame">
+        <img src="image8.jpg" alt="Organic Concept Integration Structural Motif">
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <div class="section-header-wrap">
+      <h2 class="section-title">About</h2>
+    </div>
     <div class="bio-layout">
-      <div class="bio-visual-stack">
-        <div class="bio-main-frame">
-          <img src="image4.jpg" alt="Daniela Sounes Portrait Frame">
-        </div>
-        <div class="badge-capsule">HPCSA Registered</div>
-        <div class="badge-capsule-secondary">BHF Recognized</div>
+      <div class="bio-main-frame">
+        <img src="image4.jpg" alt="Daniela Sounes Practice Portrait Frame Asset">
       </div>
       <div>
-        <span class="section-num">02 / Theoretical Grounding</span>
-        <h2 class="section-title" style="margin-bottom: 2rem;">Grounded in curiosity. Held with care.</h2>
-        <p>I am a Clinical Psychologist whose work is informed by psychodynamic psychotherapy and a deep respect for the
-          complexity of human experience. I believe that psychological difficulties deserve thoughtful attention rather
-          than quick assumptions or simple explanations.</p>
+        <p>I am a Clinical Psychologist registered with the HCSA and BHF.</p>
         <br>
-        <p>Sometimes we find ourselves repeating patterns, feeling stuck, or reacting in ways that do not fully make
-          sense. I aim to offer a space that feels calm, respectful, and collaborative, where your story can be heard
-          and explored at a pace that feels right for you.</p>
-
-        <div class="journey-timeline">
-          <h4>Professional Framework Parameters</h4>
-          <div class="timeline-row">
-            <div class="timeline-year">Focus</div>
-            <div class="timeline-desc">Psychodynamic Psychotherapy & Trauma-Informed Containment Models</div>
+        <p>My work is informed by psychodynamic psychotherapy and a deep respect for the complexity of human experience. I believe that psychological difficulties deserve thoughtful attention rather than quick assumptions or simple explanations.</p>
+        <br>
+        <p>I strive to create a therapeutic space that is warm, reflective, and grounded in genuine curiosity about each person's unique story.</p>
+        
+        <div class="registration-box">
+          <div class="reg-item">
+            <span>Licensure Council</span>
+            <p>HPCSA Registered</p>
           </div>
-          <div class="timeline-row">
-            <div class="timeline-year">Licensure</div>
-            <div class="timeline-desc">Health Professions Council of South Africa (HPCSA) & Board of Healthcare Funders
-            </div>
+          <div class="reg-item">
+            <span>Recognition Board</span>
+            <p>BHF Recognized</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 4: Premium Secure Contact Portal -->
   <section id="portal" class="reveal">
     <div class="portal-container">
       <div class="portal-info">
-        <span class="section-num">03 / Intake Initialization</span>
-        <h3>Begin the conversation.</h3>
-        <p>Beginning therapy can feel like a significant step. Complete this private structural intake configuration
-          routing profile to arrange an initialization consultation window.</p>
+        <h2 class="section-title" style="margin-bottom: 1.5rem;">Contact</h2>
+        <p>Beginning therapy can feel like a significant step. If you would like to arrange an appointment or discuss whether therapy may be helpful, you are welcome to get in touch.</p>
 
         <div class="meta-contact-list">
           <div class="meta-contact-item">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
             <div>
-              <span>Secure Clinical Mail</span>
-              <p><a href="mailto:admin@dspsychology.co.za">admin@dspsychology.co.za</a></p>
+              <span>Email Link</span>
+              <p><a href="mailto:admin@dspsychology.co.za" style="font-weight: 500; color: var(--bordeaux);">admin@dspsychology.co.za</a></p>
             </div>
           </div>
           <div class="meta-contact-item">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.72l.54 2.22a1 1 0 01-.25.84l-1.25 1.25a15.53 15.53 0 006.75 6.75l1.25-1.25a1 1 0 01.84-.25l2.22.54a1 1 0 01.72.94V19a2 2 0 01-2 2h-1C9.71 21 3 14.29 3 6V5z" />
-            </svg>
             <div>
-              <span>Practice Operations Line</span>
-              <p><a href="tel:0678857080">067 885 7080</a></p>
+              <span>Phone Line</span>
+              <p><a href="tel:0678857080" style="font-weight: 500; color: var(--bordeaux);">067 885 7080</a></p>
             </div>
           </div>
           <div class="meta-contact-item">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <circle cx="12" cy="11" r="3" />
-            </svg>
             <div>
-              <span>Physical Practice Context</span>
-              <p>77 11th Street, Parkmore, Sandton, Johannesburg</p>
+              <span>Practice Location</span>
+              <p style="opacity: 0.85;">77 11th Street, Parkmore, Sandton, Johannesburg.</p>
             </div>
           </div>
         </div>
       </div>
 
       <div>
-        <form onsubmit="event.preventDefault(); alert('Transmission secured.');" class="form-layout">
+        <form onsubmit="event.preventDefault(); alert('Message logged successfully.');" class="form-layout">
           <div class="form-field">
-            <label>Your Identity Designation</label>
-            <input type="text" placeholder="Full Name" required>
+            <label>Name & Surname</label>
+            <input type="text" placeholder="Your Name" required>
           </div>
           <div class="form-field">
-            <label>Secure Communication Channel</label>
-            <input type="email" placeholder="Email Address" required>
+            <label>Email Address</label>
+            <input type="email" placeholder="Your Email" required>
           </div>
           <div class="form-field full">
-            <label>Narrative Orientation Context</label>
-            <textarea
-              placeholder="Please describe brief overview parameters or specific scheduling requirements..."></textarea>
+            <label>Message / Inquiries</label>
+            <textarea placeholder="Write your message here..."></textarea>
           </div>
           <div class="form-field full">
             <div class="consent-checkbox">
               <input type="checkbox" id="privacy-agree" required>
-              <label for="privacy-agree">I authorize secure data encapsulation and clinical tracking under verified
-                information protocols.</label>
+              <label for="privacy-agree">I understand that this form submits secure operational data request channels to initiate clinical scheduling procedures.</label>
             </div>
           </div>
-          <div class="form-field full" style="margin-top: 1rem;">
-            <button type="submit" class="btn-solid" style="justify-content: center;">Book Session</button>
+          <div class="form-field full" style="margin-top: 0.5rem;">
+            <button type="submit" class="btn-solid" style="justify-content: center; width: 100%;">Send Message</button>
           </div>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Editorial Footer -->
   <footer>
     <p>Daniela Sounes &nbsp;·&nbsp; Clinical Psychologist</p>
-    <p style="opacity: 0.5;">© 2026 — All Rights Reserved</p>
+    <p style="opacity: 0.6;">© 2026 — All Rights Reserved</p>
   </footer>
 
-  <!-- Interactive Control Engines -->
   <script>
-    // Tab System Engine
-    function switchTab(event, tabId) {
-      document.querySelectorAll('.tab-trigger').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.showcase-content').forEach(content => content.classList.remove('active'));
+    // Functional Mobile Menu Navigation Engine
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const links = document.querySelectorAll('.nav-links a');
 
-      event.currentTarget.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    }
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      navLinks.classList.toggle('mobile-open');
+    });
+
+    // Automatically closes the slide menu when any individual page link is clicked
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('mobile-open');
+      });
+    });
 
     // Scroll Reveal Engine
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1064,7 +969,7 @@ nav {
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.08 });
 
     document.querySelectorAll('.reveal').forEach(section => revealObserver.observe(section));
   </script>
