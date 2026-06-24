@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -27,6 +27,7 @@
       --tan: #C6A792;
       --tan-lt: #E6DCD3;
       --parchment: #FAF4F0;
+      --parchment-alt: #E7DED5;
       --parchment-dk: #F2E9E1;
       --ink: #2A1215;
       --white: #FFFFFF;
@@ -35,7 +36,7 @@
       --glass-border: rgba(93, 23, 29, 0.12);
       --glass-shadow: rgba(93, 23, 29, 0.03);
 
-      --serif: 'Playfair Display', Georgia, serif;
+      --serif: 'Avander', serif;
       --sans: 'Poppins', system-ui, sans-serif;
       --accent: 'Avander', serif;
       --max: 1200px;
@@ -138,7 +139,7 @@
       text-align: center;
       gap: 2px;
       text-decoration: none;
-      z-index: 110; /* Stays above mobile menu toggle */
+      z-index: 110;
     }
 
     .logo-badge-container {
@@ -218,7 +219,6 @@
       color: var(--parchment);
     }
 
-    /* Cute Functional Hamburger Icon Trigger */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -238,6 +238,7 @@
     }
 
     /* ─── HERO SECTION ──────────────────────────── */
+    /* Hero alternates: section 1 = parchment-alt (#E7DED5) */
     .hero {
       min-height: 100svh;
       display: flex;
@@ -246,6 +247,7 @@
       max-width: var(--max);
       margin: 0 auto;
       gap: 4rem;
+      background: transparent;
     }
 
     .hero-content {
@@ -313,6 +315,20 @@
       object-fit: cover;
     }
 
+    /* ─── ALTERNATING SECTION BACKGROUNDS ────────── */
+    /* Odd sections: #F8F4F0, Even sections: #E7DED5 */
+    .section-bg-light {
+      background-color: #F8F4F0;
+    }
+    .section-bg-alt {
+      background-color: #E7DED5;
+    }
+
+    /* Full-width background wrappers */
+    .section-wrapper {
+      width: 100%;
+    }
+
     /* ─── GENERAL LAYOUT SECTIONS ────────────────── */
     section {
       padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6.5rem);
@@ -333,7 +349,7 @@
       font-weight: 400;
     }
 
-    /* ─── SECTION: INTRODUCTION ────────────────── */
+    /* ─── SECTION: INTRODUCTION (now Psychotherapy) ── */
     .intro-block {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -359,31 +375,31 @@
       height: 100%;
     }
 
-    /* ─── SECTION: AREAS OF WORK (GRID EDITIONS) ─── */
+    /* ─── SECTION: AREAS OF WORK ─── */
     .work-section-layout {
       display: block; 
       width: 100%;
     }
 
+    /* Bullet-style full-width thin blocks */
     .work-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
       margin-top: 2rem;
       width: 100%;
     }
 
     .work-card {
-      background: #ffffff;
+      background: rgba(255,255,255,0.55);
       border: 1px solid var(--glass-border);
-      border-left: 4px solid var(--bordeaux); 
-      padding: 2.2rem 2rem;
-      min-height: 130px; 
+      border-left: 4px solid var(--bordeaux);
+      padding: 1rem 2rem;
       display: flex;
-      align-items: center; 
+      align-items: center;
       position: relative;
       overflow: hidden;
-      border-radius: 0px 4px 4px 0px; 
+      border-radius: 0px 4px 4px 0px;
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
@@ -398,23 +414,47 @@
     }
 
     .work-card:hover {
-      transform: translateX(4px); 
+      transform: translateX(4px);
       border-color: var(--bordeaux);
-      box-shadow: 0 10px 30px rgba(93, 23, 29, 0.06);
+      box-shadow: 0 4px 20px rgba(93, 23, 29, 0.06);
     }
 
     .work-card:hover::before {
-      opacity: 1; 
+      opacity: 1;
     }
 
     .work-card h3 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--bordeaux);
-      font-weight: 500;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 400;
       line-height: 1.4;
       position: relative;
-      z-index: 2; 
+      z-index: 2;
+    }
+
+    /* Work section with image layout */
+    .work-with-image {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .work-image-frame {
+      width: 100%;
+      aspect-ratio: 0.85 / 1;
+      border-radius: 4px 100px 4px 4px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      position: sticky;
+      top: 120px;
+    }
+
+    .work-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* ─── SECTION: APPROACH ────────────────────── */
@@ -489,6 +529,46 @@
       color: var(--bordeaux);
     }
 
+    /* Qualifications list */
+    .qualifications-list {
+      margin-top: 2rem;
+    }
+
+    .qualifications-list h4 {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--tan);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .qualifications-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .qualifications-list ul li {
+      font-size: 0.9rem;
+      color: var(--ink);
+      opacity: 0.85;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(93, 23, 29, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .qualifications-list ul li::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--bordeaux);
+      flex-shrink: 0;
+    }
+
     /* ─── SECTION: CONTACT & INTAKE PORTAL ──────── */
     .portal-container {
       background: rgba(255, 255, 255, 0.4);
@@ -498,6 +578,7 @@
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 4rem;
+      align-items: start;
     }
 
     .portal-info p {
@@ -533,7 +614,6 @@
       color: var(--ink);
     }
 
-    /* Precision Inline Grid Form Control */
     .form-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -558,7 +638,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* REFINED FORM INPUT FIELDS WITH GOLD TOUCH */
     .form-field input,
     .form-field textarea {
       background: rgba(255, 255, 255, 0.75);
@@ -567,11 +646,10 @@
       font-family: var(--sans);
       font-size: 0.95rem;
       color: var(--ink);
-      border-radius: 8px; 
+      border-radius: 8px;
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    /* Elegant gold aura when field is selected */
     .form-field input:focus,
     .form-field textarea:focus {
       outline: none;
@@ -632,16 +710,16 @@
       gap: 2rem;
     }
 
-    /* ─── STYLISH CORE RESPONSIVE MEDIA QUERIES ─── */
+    /* ─── RESPONSIVE MEDIA QUERIES ─── */
     @media (max-width: 992px) {
       .menu-toggle {
-        display: flex; /* Hamburger becomes responsive trigger button */
+        display: flex;
       }
 
       .nav-links {
         position: fixed;
         top: 0;
-        right: -100%; /* Hidden off-screen by default */
+        right: -100%;
         width: 75vw;
         max-width: 320px;
         height: 100vh;
@@ -655,12 +733,10 @@
         z-index: 105;
       }
 
-      /* Trigger slide class built out via script engines */
       .nav-links.mobile-open {
         right: 0;
       }
 
-      /* Hamburger transform animations into a neat close 'X' symbol */
       .menu-toggle.open span:nth-child(1) {
         transform: rotate(45deg) translate(2px, -2px);
       }
@@ -696,8 +772,18 @@
         gap: 3.5rem;
       }
 
+      .work-with-image {
+        grid-template-columns: 1fr;
+      }
+
+      .work-image-frame {
+        position: static;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
       .intro-art-frame {
-        order: -1; /* Pushes introduction imagery above narrative on tablets */
+        order: -1;
       }
 
       .bio-main-frame {
@@ -707,11 +793,6 @@
     }
 
     @media (max-width: 768px) {
-      .work-grid {
-        grid-template-columns: 1fr; /* Complete single card stacks on devices */
-      }
-
-      /* FORM PIVOT POINT: Transforms from split side-by-side to a vertical single stack layout */
       .form-layout {
         grid-template-columns: 1fr;
       }
@@ -752,11 +833,11 @@
     </a>
     
     <ul class="nav-links" id="navLinks">
-      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#intro">Psychotherapy</a></li>
       <li><a href="#work">Areas of Work</a></li>
       <li><a href="#approach">Approach</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#portal" class="nav-cta">Book Appointment</a></li>
+      <li><a href="#portal" class="nav-cta">Contact</a></li>
     </ul>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
@@ -766,176 +847,195 @@
     </button>
   </nav>
 
-  <header class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">Perhaps understanding is where we begin.</h1>
-      <p class="hero-desc">Thoughtful psychotherapy grounded in curiosity, reflection, and understanding.</p>
-      <a href="#portal" class="btn-solid">Book Appointment</a>
-    </div>
-    <div class="hero-media">
-      <div class="hero-art-frame">
-        <img src="image1.png" alt="Daniela Sounes Creative Hero Spatial Asset">
+  <!-- HERO — background: #E7DED5 (section 1, alt) -->
+  <div class="section-wrapper section-bg-alt">
+    <header class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Thoughtful psychotherapy grounded in curiosity, reflection, and understanding.</h1>
+        <a href="#portal" class="btn-solid">Contact</a>
       </div>
-    </div>
-  </header>
+      <div class="hero-media">
+        <!-- Darker/red hero image -->
+        <div class="hero-art-frame">
+          <img src="image5.png" alt="Daniela Sounes Hero Image">
+        </div>
+      </div>
+    </header>
+  </div>
 
-  <section id="intro" class="reveal">
-    <div class="section-header-wrap">
-      <h2 class="section-title">Introduction</h2>
-    </div>
-    <div class="intro-block">
-      <div class="intro-paragraphs">
-        <p>At times, life can feel overwhelming, confusing, or difficult to navigate. You may find yourself facing challenges that seem to endure despite your best efforts, struggling in relationships, feeling disconnected from yourself, or carrying emotions that don’t quite make sense.</p>
-        <p>Therapy is a space to slow down and make sense of what may be happening. Together, we can explore with curiosity and care, developing a deeper understanding of what may be contributing to distress and what might support meaningful change.</p>
-        <p>Seeking therapy is not only for times of crisis. It can also be an opportunity to get to know yourself better, strengthen your relationships, and feel more present in your own life.</p>
+  <!-- PSYCHOTHERAPY (intro) — background: #F8F4F0 (section 2, light) -->
+  <div class="section-wrapper section-bg-light">
+    <section id="intro" class="reveal">
+      <div class="section-header-wrap">
+        <h2 class="section-title">Psychotherapy</h2>
       </div>
-      <div class="intro-art-frame">
-        <img src="image5.png" alt="Therapeutic Architectural Space Reference Asset">
+      <div class="intro-block">
+        <div class="intro-paragraphs">
+          <p>At times, life can feel overwhelming, confusing, or difficult to navigate. You may find yourself facing challenges that seem to endure despite your best efforts, struggling in relationships, feeling disconnected from yourself, or carrying emotions that don't quite make sense.</p>
+          <p>Therapy is a space to slow down and make sense of what may be happening. Together, we can explore with curiosity and care, developing a deeper understanding of what may be contributing to distress and what might support meaningful change.</p>
+          <p>Seeking therapy is not only for times of crisis. It can also be an opportunity to get to know yourself better, strengthen your relationships, and feel more present in your own life.</p>
+        </div>
+        <div class="intro-art-frame">
+          <!-- Lighter image for this section -->
+          <img src="image1.png" alt="Therapeutic Space">
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="work" class="reveal">
-    <div class="section-header-wrap">
-      <h2 class="section-title">Areas of Work</h2>
-    </div>
-    
-    <div class="work-section-layout">
-      <p style="opacity: 0.85; margin-bottom: 2.5rem; max-width: 70ch;">I work with a range of emotional and psychological difficulties, including more complex presentations, including:</p>
+  <!-- AREAS OF WORK — background: #E7DED5 (section 3, alt) -->
+  <div class="section-wrapper section-bg-alt">
+    <section id="work" class="reveal">
+      <div class="section-header-wrap">
+        <h2 class="section-title">Areas of Work</h2>
+      </div>
       
-      <div class="work-grid">
-        <div class="work-card">
-          <h3>Anxiety, panic, and ongoing worry</h3>
-        </div>
-        <div class="work-card">
-          <h3>Low mood, depression, and feeling emotionally shut down</h3>
-        </div>
-        <div class="work-card">
-          <h3>Trauma and the lingering effects of difficult experiences</h3>
-        </div>
-        <div class="work-card">
-          <h3>Emotional intensity, overwhelm, or feeling “stuck” in patterns</h3>
-        </div>
-        <div class="work-card">
-          <h3>Confusion in relationships or repeated relational difficulties</h3>
-        </div>
-        <div class="work-card">
-          <h3>Experiences that feel hard to explain or make sense of</h3>
-        </div>
-        <div class="work-card">
-          <h3>Stress, burnout, and major life transitions</h3>
-        </div>
-        <div class="work-card">
-          <h3>Questions around identity, self-worth, and direction</h3>
-        </div>
-        <div class="work-card">
-          <h3>Psychological support for healthcare workers</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="approach" class="reveal">
-    <div class="section-header-wrap">
-      <h2 class="section-title">Approach</h2>
-    </div>
-    <div class="approach-block">
-      <div class="approach-paragraphs">
-        <p>My approach is based on the understanding that our experiences, relationships, and ways of coping are shaped by both our past and our present.</p>
-        <p>Sometimes we find ourselves repeating patterns, feeling stuck, or reacting in ways that do not fully make sense. While these experiences can be frustrating, they often carry important information about our emotional world and can begin to make sense when we have space to explore them more closely.</p>
-        <p>Therapy provides an opportunity to explore these experiences in a thoughtful and supportive environment. Rather than only focusing on what feels difficult, we try to understand what your experiences might be telling us about you, your relationships, and what you’ve been carrying over time.</p>
-        <p>I aim to offer a space that feels calm, respectful, and collaborative, where your story can be heard and explored at a pace that feels right for you.</p>
-      </div>
-      <div class="approach-art-frame">
-        <img src="image8.jpg" alt="Organic Concept Integration Structural Motif">
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="reveal">
-    <div class="section-header-wrap">
-      <h2 class="section-title">About</h2>
-    </div>
-    <div class="bio-layout">
-      <div class="bio-main-frame">
-        <img src="image4.jpg" alt="Daniela Sounes Practice Portrait Frame Asset">
-      </div>
-      <div>
-        <p>I am a Clinical Psychologist registered with the HCSA and BHF.</p>
-        <br>
-        <p>My work is informed by psychodynamic psychotherapy and a deep respect for the complexity of human experience. I believe that psychological difficulties deserve thoughtful attention rather than quick assumptions or simple explanations.</p>
-        <br>
-        <p>I strive to create a therapeutic space that is warm, reflective, and grounded in genuine curiosity about each person's unique story.</p>
-        
-        <div class="registration-box">
-          <div class="reg-item">
-            <span>Licensure Council</span>
-            <p>HPCSA Registered</p>
-          </div>
-          <div class="reg-item">
-            <span>Recognition Board</span>
-            <p>BHF Recognized</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="portal" class="reveal">
-    <div class="portal-container">
-      <div class="portal-info">
-        <h2 class="section-title" style="margin-bottom: 1.5rem;">Contact</h2>
-        <p>Beginning therapy can feel like a significant step. If you would like to arrange an appointment or discuss whether therapy may be helpful, you are welcome to get in touch.</p>
-
-        <div class="meta-contact-list">
-          <div class="meta-contact-item">
-            <div>
-              <span>Email Link</span>
-              <p><a href="mailto:admin@dspsychology.co.za" style="font-weight: 500; color: var(--bordeaux);">admin@dspsychology.co.za</a></p>
+      <div class="work-section-layout">
+        <div class="work-with-image">
+          <div>
+            <p style="opacity: 0.85; margin-bottom: 1.5rem;">I work with a range of emotional and psychological difficulties, including more complex presentations, including:</p>
+            <div class="work-grid">
+              <div class="work-card"><h3>Anxiety, panic, and ongoing worry</h3></div>
+              <div class="work-card"><h3>Low mood, depression, and feeling emotionally shut down</h3></div>
+              <div class="work-card"><h3>Trauma and the lingering effects of difficult experiences</h3></div>
+              <div class="work-card"><h3>Emotional intensity, overwhelm, or feeling "stuck" in patterns</h3></div>
+              <div class="work-card"><h3>Confusion in relationships or repeated relational difficulties</h3></div>
+              <div class="work-card"><h3>Experiences that feel hard to explain or make sense of</h3></div>
+              <div class="work-card"><h3>Stress, burnout, and major life transitions</h3></div>
+              <div class="work-card"><h3>Questions around identity, self-worth, and direction</h3></div>
+              <div class="work-card"><h3>Psychological support for healthcare workers</h3></div>
             </div>
           </div>
-          <div class="meta-contact-item">
-            <div>
-              <span>Phone Line</span>
-              <p><a href="tel:0678857080" style="font-weight: 500; color: var(--bordeaux);">067 885 7080</a></p>
-            </div>
+          <!-- Stock image for areas of work -->
+          <div class="work-image-frame">
+            <img src="image5.png" alt="Areas of Work">
           </div>
-          <div class="meta-contact-item">
-            <div>
-              <span>Practice Location</span>
-              <p style="opacity: 0.85;">77 11th Street, Parkmore, Sandton, Johannesburg.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- APPROACH — background: #F8F4F0 (section 4, light) -->
+  <div class="section-wrapper section-bg-light">
+    <section id="approach" class="reveal">
+      <div class="section-header-wrap">
+        <h2 class="section-title">Approach</h2>
+      </div>
+      <div class="approach-block">
+        <div class="approach-paragraphs">
+          <p>My approach is based on the understanding that our experiences, relationships, and ways of coping are shaped by both our past and our present.</p>
+          <p>Sometimes we find ourselves repeating patterns, feeling stuck, or reacting in ways that do not fully make sense. While these experiences can be frustrating, they often carry important information about our emotional world and can begin to make sense when we have space to explore them more closely.</p>
+          <p>Therapy provides an opportunity to explore these experiences in a thoughtful and supportive environment. Rather than only focusing on what feels difficult, we try to understand what your experiences might be telling us about you, your relationships, and what you've been carrying over time.</p>
+          <p>I aim to offer a space that feels calm, respectful, and collaborative, where your story can be heard and explored at a pace that feels right for you.</p>
+        </div>
+        <!-- Stock image for approach -->
+        <div class="approach-art-frame">
+          <img src="image8.jpg" alt="Approach">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABOUT — background: #E7DED5 (section 5, alt) -->
+  <div class="section-wrapper section-bg-alt">
+    <section id="about" class="reveal">
+      <div class="section-header-wrap">
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="bio-layout">
+        <div class="bio-main-frame">
+          <img src="image4.jpg" alt="Daniela Sounes">
+        </div>
+        <div>
+          <p>I am a Clinical Psychologist registered with the HPCSA and BHF.</p>
+          <br>
+          <p>My work is informed by psychodynamic psychotherapy and a deep respect for the complexity of human experience. I believe that psychological difficulties deserve thoughtful attention rather than quick assumptions or simple explanations.</p>
+          <br>
+          <p>I strive to create a therapeutic space that is warm, reflective, and grounded in genuine curiosity about each person's unique story.</p>
+          
+          <div class="qualifications-list">
+            <h4>Qualifications</h4>
+            <ul>
+              <li>MA Clinical Psychology (Wits)</li>
+              <li>MA Cognitive Studies (Wits)</li>
+              <li>BA Honours Psychology (Rhodes)</li>
+              <li>BA Psychology, Philosophy, Italian (Wits)</li>
+            </ul>
+          </div>
+
+          <div class="registration-box">
+            <div class="reg-item">
+              <span>Licensure Council</span>
+              <p>HPCSA Registered</p>
+            </div>
+            <div class="reg-item">
+              <span>Recognition Board</span>
+              <p>BHF Recognized</p>
             </div>
           </div>
         </div>
       </div>
+    </section>
+  </div>
 
-      <div>
-        <form onsubmit="event.preventDefault(); alert('Message logged successfully.');" class="form-layout">
-          <div class="form-field">
-            <label>Name & Surname</label>
-            <input type="text" placeholder="Your Name" required>
-          </div>
-          <div class="form-field">
-            <label>Email Address</label>
-            <input type="email" placeholder="Your Email" required>
-          </div>
-          <div class="form-field full">
-            <label>Message / Inquiries</label>
-            <textarea placeholder="Write your message here..."></textarea>
-          </div>
-          <div class="form-field full">
-            <div class="consent-checkbox">
-              <input type="checkbox" id="privacy-agree" required>
-              <label for="privacy-agree">I understand that this form submits secure operational data request channels to initiate clinical scheduling procedures.</label>
+  <!-- CONTACT — background: #F8F4F0 (section 6, light) -->
+  <div class="section-wrapper section-bg-light">
+    <section id="portal" class="reveal">
+      <div class="portal-container">
+        <div class="portal-info">
+          <h2 class="section-title" style="margin-bottom: 1.5rem;">Contact</h2>
+          <p>Beginning therapy can feel like a significant step. If you would like to arrange an appointment or discuss whether therapy may be helpful, you are welcome to get in touch.</p>
+
+          <div class="meta-contact-list">
+            <div class="meta-contact-item">
+              <div>
+                <span>Email</span>
+                <p><a href="mailto:admin@dspsychology.co.za" style="font-weight: 500; color: var(--bordeaux);">admin@dspsychology.co.za</a></p>
+              </div>
+            </div>
+            <div class="meta-contact-item">
+              <div>
+                <span>Call or Whatsapp</span>
+                <p><a href="tel:0678857080" style="font-weight: 500; color: var(--bordeaux);">067 885 7080</a></p>
+              </div>
+            </div>
+            <div class="meta-contact-item">
+              <div>
+                <span>Practice Location</span>
+                <p style="opacity: 0.85; line-height: 1.8;">77 11th Street<br>Parkmore, Sandton<br>2191</p>
+              </div>
             </div>
           </div>
-          <div class="form-field full" style="margin-top: 0.5rem;">
-            <button type="submit" class="btn-solid" style="justify-content: center; width: 100%;">Send Message</button>
-          </div>
-        </form>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+          <form onsubmit="event.preventDefault(); alert('Message logged successfully.');" class="form-layout">
+            <div class="form-field">
+              <label>Name & Surname</label>
+              <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-field">
+              <label>Email Address</label>
+              <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-field full">
+              <label>Message / Inquiries</label>
+              <textarea placeholder="Write your message here..."></textarea>
+            </div>
+            <div class="form-field full">
+              <div class="consent-checkbox">
+                <input type="checkbox" id="privacy-agree" required>
+                <label for="privacy-agree">I understand that this form submits secure operational data request channels to initiate clinical scheduling procedures.</label>
+              </div>
+            </div>
+            <div class="form-field full" style="margin-top: 0.5rem;">
+              <button type="submit" class="btn-solid" style="justify-content: center; width: 100%;">Send Message</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <footer>
     <p>Daniela Sounes &nbsp;·&nbsp; Clinical Psychologist</p>
@@ -943,7 +1043,6 @@
   </footer>
 
   <script>
-    // Functional Mobile Menu Navigation Engine
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     const links = document.querySelectorAll('.nav-links a');
@@ -953,7 +1052,6 @@
       navLinks.classList.toggle('mobile-open');
     });
 
-    // Automatically closes the slide menu when any individual page link is clicked
     links.forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.classList.remove('open');
@@ -961,7 +1059,6 @@
       });
     });
 
-    // Scroll Reveal Engine
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
