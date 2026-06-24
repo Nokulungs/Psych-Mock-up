@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Notice — Daniela Sounes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Avander';
+      src: url('Avander-Regular.woff2') format('woff2'),
+           url('Avander.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* ─── SYSTEM UTILITIES & VARIABLE TOKENS ─── */
+    :root {
+      --bordeaux: #5D171D;
+      --tan: #C6A792;
+      --tan-lt: #E6DCD3;
+      --parchment: #FAF4F0;
+      --ink: #2A1215;
+      --white: #FFFFFF;
+      --glass-border: rgba(93, 23, 29, 0.12);
+      --serif: 'Avander', serif;
+      --sans: 'Poppins', system-ui, sans-serif;
+      --max: 900px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+      color: var(--ink);
+      background: var(--parchment);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ─── BACKDROP AMBIENT EFFECTS ─── */
+    .ambient-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: -2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb-1 {
+      position: absolute;
+      width: 70vw; height: 70vw; max-width: 900px;
+      background: radial-gradient(circle, rgba(93, 23, 29, 0.04) 0%, rgba(250, 244, 240, 0) 70%);
+      top: -10vw; right: -10vw;
+    }
+
+    /* ─── FIXED HEADER CLONE ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center; 
+      justify-content: space-between;
+      padding: 0.35rem clamp(1.5rem, 6vw, 6.5rem); 
+      background: rgba(250, 244, 240, 0.95);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 2px;
+      z-index: 110;
+    }
+
+    .logo-badge-container {
+      width: 50px;  
+      height: 38px; 
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .logo-badge-container img {
+      width: 100%;
+      height: auto;
+    }
+
+    .logo-text-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-name {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1rem; 
+      color: var(--bordeaux);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-title {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 0.52rem; 
+      color: var(--tan);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      line-height: 1.1;
+      margin-top: 1px; 
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--bordeaux);
+    }
+
+    .nav-links a.nav-cta {
+      opacity: 1;
+      color: var(--bordeaux);
+      border: 1px solid var(--bordeaux);
+      padding: 0.5rem 1.2rem;
+    }
+
+    .nav-links a.nav-cta:hover {
+      background: var(--bordeaux);
+      color: var(--parchment);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 22px; height: 16px;
+      z-index: 110;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 2px; width: 100%;
+      background-color: var(--bordeaux);
+      transition: all 0.3s ease;
+    }
+
+    /* ─── CENTERED WEBSITE CONTENT CONTAINER ─── */
+    .page-wrapper {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 160px clamp(1.5rem, 6vw, 6.5rem) 6rem;
+    }
+
+    .legal-body {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid var(--glass-border);
+      padding: clamp(2rem, 5vw, 4.5rem);
+      border-radius: 4px;
+    }
+
+    /* Centered Main Heading Elements */
+    .container-header {
+      text-align: center;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .container-header h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--bordeaux);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta-date {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--tan);
+      font-weight: 600;
+    }
+
+    /* Left-aligned readable text blocks inside container */
+    .legal-content {
+      text-align: left;
+    }
+
+    .legal-content h2 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--bordeaux);
+      font-weight: 400;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .legal-content p {
+      opacity: 0.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .legal-content ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .legal-content ul li {
+      opacity: 0.85;
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .legal-content ul li::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--bordeaux);
+      margin-top: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .legal-content a {
+      color: var(--bordeaux);
+      font-weight: 500;
+      border-bottom: 1px dashed rgba(93, 23, 29, 0.4);
+    }
+
+    /* ─── FULL SIZE FOOTER CLONE ─── */
+    footer {
+      background: var(--bordeaux);
+      color: var(--parchment);
+      padding: 4rem clamp(1.5rem, 6vw, 6.5rem) 3rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      border-top: 1px solid rgba(250, 244, 240, 0.1);
+    }
+
+    .footer-brand h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand p {
+      opacity: 0.7;
+      line-height: 1.6;
+      font-size: 0.83rem;
+    }
+
+    .footer-links-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links-col h5 {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--tan);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .footer-links-col a {
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links-col a:hover {
+      opacity: 1;
+      color: var(--tan-lt);
+      transform: translateX(2px);
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .footer-copyright {
+      opacity: 0.5;
+      font-size: 0.75rem;
+    }
+
+    /* ─── BREAKPOINTS ─── */
+    @media (max-width: 992px) {
+      .menu-toggle { display: flex; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%;
+        width: 75vw; max-width: 320px; height: 100vh;
+        background: var(--white);
+        flex-direction: column; justify-content: center;
+        gap: 2.5rem; padding: 3rem;
+        transition: right 0.4s ease;
+        z-index: 105;
+      }
+      .nav-links.mobile-open { right: 0; }
+    }
+
+    @media (max-width: 768px) {
+      footer { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+      .footer-meta { align-items: center; text-align: center; gap: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient-bg">
+    <div class="orb-1"></div>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <div class="logo-badge-container">
+        <img src="Badge.png" alt="Emblem" />
+      </div>
+      <div class="logo-text-stack">
+        <span class="logo-name">Daniela Sounes</span>
+        <span class="logo-title">Clinical Psychologist</span>
+      </div>
+    </a>
+    
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#intro">Psychotherapy</a></li>
+      <li><a href="index.html#work">Areas of Work</a></li>
+      <li><a href="index.html#approach">Approach</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#portal" class="nav-cta">Contact</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="legal-body">
+      <div class="container-header">
+        <h1>Privacy Notice</h1>
+        <div class="meta-date">Effective Date: 22 June 2026</div>
+      </div>
+
+      <div class="legal-content">
+        <p>This Privacy Notice explains how www.dspsychology.co.za ("the Practice", "we", "us", or "our") collects, uses, stores, and protects personal information in accordance with the Protection of Personal Information Act 4 of 2013 (POPIA).</p>
+
+        <h2>Information We Collect</h2>
+        <p>We may collect and process the following personal information:</p>
+        <ul>
+          <li>Name and surname</li>
+          <li>Contact information, including telephone number and email address</li>
+          <li>Information submitted through website contact forms</li>
+          <li>Information required to arrange appointments</li>
+          <li>Website usage information, including IP addresses, browser information, and cookies</li>
+        </ul>
+        <p>Should you become a client of the Practice, additional personal and special personal information, including health information, may be collected and processed in accordance with applicable legislation and professional obligations.</p>
+
+        <h2>Purpose of Processing</h2>
+        <p>Personal information may be collected and processed for the following purposes:</p>
+        <ul>
+          <li>Responding to enquiries</li>
+          <li>Scheduling and managing appointments</li>
+          <li>Improving website functionality and user experience</li>
+        </ul>
+
+        <h2>Legal Basis for Processing</h2>
+        <p>We process personal information on the basis of:</p>
+        <ul>
+          <li>Your consent</li>
+          <li>Compliance with legal and regulatory obligations</li>
+          <li>Legitimate interests related to the operation of the Practice</li>
+        </ul>
+
+        <h2>Sharing of Personal Information</h2>
+        <p>Personal information may be shared with:</p>
+        <ul>
+          <li>Information technology service providers</li>
+          <li>Regulatory authorities or other parties where disclosure is legally required</li>
+        </ul>
+        <p>We do not sell personal information to third parties.</p>
+
+        <h2>Cross-Border Transfers</h2>
+        <p>Where electronic systems, cloud storage providers, email services, or practice management platforms store information outside South Africa, we take reasonable steps to ensure that appropriate safeguards are in place to protect personal information.</p>
+
+        <h2>Information Security</h2>
+        <p>We take reasonable technical and organisational measures to protect personal information against loss, misuse, unauthorised access, disclosure, alteration, or destruction.</p>
+
+        <h2>Retention of Information</h2>
+        <p>Personal information is retained only for as long as necessary to fulfil the purposes outlined in this policy, unless a longer retention period is required by law.</p>
+
+        <h2>Your Rights</h2>
+        <p>Subject to applicable law, you have the right to:</p>
+        <ul>
+          <li>Request access, correction, or deletion of your personal information</li>
+          <li>Lodge a complaint regarding the processing of your personal information</li>
+        </ul>
+
+        <h2>Cookies and Website Analytics</h2>
+        <p>This website may use cookies and analytics tools to improve functionality and understand website usage.</p>
+        <p>You may adjust your browser settings to manage or disable cookies.</p>
+
+        <h2>Complaints</h2>
+        <p>If you have questions or concerns about how your personal information is processed, you may contact the Practice at <a href="mailto:admin@dspsychology.co.za">admin@dspsychology.co.za</a>.</p>
+        <p>You also have the right to lodge a complaint with the Information Regulator (South Africa) at <a href="https://inforegulator.org.za" target="_blank">https://inforegulator.org.za</a>.</p>
+
+        <h2>Changes to This Privacy Notice</h2>
+        <p>We may update this Privacy Notice from time to time. Any changes will be published on this page and will take effect from the date of publication.</p>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-brand">
+      <h4>Daniela Sounes</h4>
+      <p style="text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--tan); margin-bottom: 0.75rem; font-weight: 600;">Clinical Psychologist</p>
+      <p>77 11th Street, Parkmore<br>Sandton, Johannesburg, 2191</p>
+    </div>
+    <div class="footer-links-col">
+      <h5>Legal & Protection</h5>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Notice & POPIA</a>
+      <a href="index.html#portal">Contact Us</a>
+    </div>
+    <div class="footer-meta">
+      <div class="footer-links-col" style="align-items: inherit;">
+        <h5>Explore</h5>
+        <a href="index.html#intro">Psychotherapy</a>
+        <a href="index.html#work">Areas of Work</a>
+        <a href="index.html#approach">Our Approach</a>
+      </div>
+      <p class="footer-copyright">© 2026 — All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+    });
+  </script>
+</body>
+</html>
