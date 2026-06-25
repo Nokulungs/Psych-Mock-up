@@ -13,7 +13,6 @@
   <style>
     @font-face {
       font-family: 'Avander';
-      /* Removed the absolute root slash so it properly references your local folder directory */
       src: url('fonts/AvanderRegular.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
@@ -23,14 +22,9 @@
     h2,
     .logo-name,
     .footer-brand h4 {
-      /* Enforce font family matches token precisely */
       font-family: 'Avander', var(--serif) !important;
-
-      /* ─── UNLOCK OPENTYPE LIGATURES & CURVES ─── */
       font-variant-ligatures: common-ligatures discretionary-ligatures contextual historical-ligatures;
       font-feature-settings: "liga" on, "clig" on, "calt" on, "dlig" on, "ss01" on, "ss02" on;
-
-      /* Prevent browser text-squishing */
       letter-spacing: normal;
       text-transform: none;
     }
@@ -267,7 +261,6 @@
     }
 
     /* ─── HERO SECTION ──────────────────────────── */
-    /* Hero alternates: section 1 = parchment-alt (#E7DED5) */
     .hero {
       min-height: 100svh;
       display: flex;
@@ -281,12 +274,10 @@
 
     .hero-content {
       flex: 0.9;
-      /* Slightly scales back text space so the image can stretch */
     }
 
     .hero-media {
       flex: 1.1;
-      /* Expands the image container's baseline horizontal width */
       position: relative;
       display: flex;
       justify-content: flex-end;
@@ -295,7 +286,6 @@
     .hero-title {
       font-family: var(--sans);
       font-size: clamp(2.2rem, 3.8vw, 3.5rem);
-      /* Keeps title crisp and flowing on smaller screens */
       font-weight: 500;
       line-height: 1.2;
       color: var(--bordeaux);
@@ -337,7 +327,6 @@
       position: relative;
       width: 100%;
       max-width: 540px;
-      /* Forces a beautifully large upscale frame */
       aspect-ratio: 0.85 / 1;
       background: var(--parchment-dk);
       border-radius: 50px 150px 50px 150px;
@@ -353,7 +342,6 @@
     }
 
     /* ─── ALTERNATING SECTION BACKGROUNDS ────────── */
-    /* Odd sections: #F8F4F0, Even sections: #E7DED5 */
     .section-bg-light {
       background-color: #F8F4F0;
     }
@@ -477,7 +465,6 @@
     /* Work section with image layout */
     .work-with-image {
       display: grid;
-      /* Changed from 340px to a 1.25fr vs 1fr fractional split */
       grid-template-columns: 1.25fr 1fr;
       gap: 4rem;
       align-items: flex-start;
@@ -485,7 +472,6 @@
 
     .work-image-frame {
       width: 100%;
-      /* Gives the image a prominent architectural stance next to the cards */
       aspect-ratio: 0.8 / 1;
       border-radius: 50px 4px 50px 4px;
       overflow: hidden;
