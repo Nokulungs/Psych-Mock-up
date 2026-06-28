@@ -60,7 +60,6 @@
       padding: 0;
     }
 
-
     html {
       scroll-behavior: smooth;
     }
@@ -74,17 +73,6 @@
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-    }
-
-    h1,
-    h2,
-    .logo-name,
-    .footer-brand h4 {
-      font-family: var(--serif);
-      font-variant-ligatures: common-ligatures discretionary-ligatures contextual historical-ligatures;
-      font-feature-settings: "liga" on, "clig" on, "calt" on, "dlig" on, "ss01" on, "ss02" on;
-      letter-spacing: normal;
-      text-transform: none;
     }
 
     img {
@@ -350,12 +338,10 @@
       background-color: #E7DED5;
     }
 
-    /* Full-width background wrappers */
     .section-wrapper {
       width: 100%;
     }
 
-    /* ─── GENERAL LAYOUT SECTIONS ────────────────── */
     section {
       padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6.5rem);
       max-width: 1600px;
@@ -375,7 +361,7 @@
       font-weight: 500;
     }
 
-    /* ─── SECTION: INTRODUCTION (now Psychotherapy) ── */
+    /* ─── SECTION: INTRODUCTION ── */
     .intro-block {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -407,7 +393,6 @@
       width: 100%;
     }
 
-    /* Bullet-style full-width thin blocks */
     .work-grid {
       display: flex;
       flex-direction: column;
@@ -462,7 +447,6 @@
       z-index: 2;
     }
 
-    /* Work section with image layout */
     .work-with-image {
       display: grid;
       grid-template-columns: 1.25fr 1fr;
@@ -560,7 +544,6 @@
       color: var(--bordeaux);
     }
 
-    /* Qualifications list */
     .qualifications-list {
       margin-top: 2rem;
     }
@@ -734,7 +717,7 @@
       color: var(--parchment);
       padding: 4rem clamp(1.5rem, 6vw, 6.5rem) 3rem;
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-columns: 1.2fr 1.1fr 0.7fr;
       gap: 3rem;
       font-size: 0.8rem;
       letter-spacing: 0.05em;
@@ -755,6 +738,12 @@
       font-size: 0.83rem;
     }
 
+    .footer-grid-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
     .footer-links-col {
       display: flex;
       flex-direction: column;
@@ -762,7 +751,7 @@
     }
 
     .footer-links-col h5 {
-      font-size: 1rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--tan);
@@ -771,9 +760,9 @@
     }
 
     .footer-links-col a {
-      opacity: 1rem;
       transition: all 0.3s ease;
       display: inline-block;
+      opacity: 0.8;
     }
 
     .footer-links-col a:hover {
@@ -792,31 +781,16 @@
 
     .footer-copyright {
       opacity: 0.5;
-      font-size: 1rem;
+      font-size: 0.8rem;
       margin-top: auto;
     }
 
-
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       footer {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
-        padding: 3.5rem 1.5rem 2.5rem;
-      }
-
-      .footer-meta {
-        align-items: center;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .footer-links-col a:hover {
-        transform: none;
+        grid-template-columns: 1fr 1.2fr 0.8fr;
       }
     }
 
-    /* ─── RESPONSIVE MEDIA QUERIES ─── */
     @media (max-width: 992px) {
       .menu-toggle {
         display: flex;
@@ -898,6 +872,11 @@
         max-width: 500px;
         margin: 0 auto;
       }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
     }
 
     @media (max-width: 768px) {
@@ -915,8 +894,25 @@
       }
 
       footer {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
         text-align: center;
+        padding: 3.5rem 1.5rem 2.5rem;
+      }
+
+      .footer-grid-group {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer-meta {
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .footer-links-col a:hover {
+        transform: none;
       }
     }
   </style>
@@ -955,7 +951,7 @@
     </button>
   </nav>
 
-  <!-- HERO — background: #E7DED5 (section 1, alt) -->
+  <!-- HERO -->
   <div class="section-wrapper section-bg-alt">
     <header class="hero">
       <div class="hero-content">
@@ -963,15 +959,16 @@
         <a href="#portal" class="btn-solid">Contact</a>
       </div>
       <div class="hero-media">
-        <!-- Darker/red hero image -->
         <div class="hero-art-frame">
-          <img src="image5.png" alt="Daniela Sounes Hero Image">
+          <img
+            src="images/beautiful-fluffy-dried-grass-deep-red-background-with-deep-blurred-sunlight-shadows-aesthetic-minimal-floral-composition.jpg"
+            alt="Daniela Sounes Hero Image">
         </div>
       </div>
     </header>
   </div>
 
-  <!-- PSYCHOTHERAPY (intro) — background: #F8F4F0 (section 2, light) -->
+  <!-- PSYCHOTHERAPY (intro) -->
   <div class="section-wrapper section-bg-light">
     <section id="intro" class="reveal">
       <div class="section-header-wrap">
@@ -989,14 +986,15 @@
             better, strengthen your relationships, and feel more present in your own life.</p>
         </div>
         <div class="intro-art-frame">
-          <!-- Lighter image for this section -->
-          <img src="image1.png" alt="Therapeutic Space">
+          <img
+            src="images/palm-leaves-casting-shadows-wall-creating-tropical-natural-ambiance-ideal-backgrounds-decor.jpg"
+            alt="Therapeutic Space">
         </div>
       </div>
     </section>
   </div>
 
-  <!-- AREAS OF WORK — background: #E7DED5 (section 3, alt) -->
+  <!-- AREAS OF WORK -->
   <div class="section-wrapper section-bg-alt">
     <section id="work" class="reveal">
       <div class="section-header-wrap">
@@ -1038,16 +1036,15 @@
               </div>
             </div>
           </div>
-          <!-- Stock image for areas of work -->
           <div class="work-image-frame">
-            <img src="image5.png" alt="Areas of Work">
+            <img src="images/plain-maroon-background.jpg" alt="Areas of Work">
           </div>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- APPROACH — background: #F8F4F0 (section 4, light) -->
+  <!-- APPROACH -->
   <div class="section-wrapper section-bg-light">
     <section id="approach" class="reveal">
       <div class="section-header-wrap">
@@ -1066,7 +1063,6 @@
           <p>I aim to offer a space that feels calm, respectful, and collaborative, where your story can be heard and
             explored at a pace that feels right for you.</p>
         </div>
-        <!-- Stock image for approach -->
         <div class="approach-art-frame">
           <img src="image8.jpg" alt="Approach">
         </div>
@@ -1074,7 +1070,7 @@
     </section>
   </div>
 
-  <!-- ABOUT — background: #E7DED5 (section 5, alt) -->
+  <!-- ABOUT -->
   <div class="section-wrapper section-bg-alt">
     <section id="about" class="reveal">
       <div class="section-header-wrap">
@@ -1082,7 +1078,7 @@
       </div>
       <div class="bio-layout">
         <div class="bio-main-frame">
-          <img src="image4.jpg" alt="Daniela Sounes">
+          <img src="images/headshot.jpg" alt="Daniela Sounes">
         </div>
         <div>
           <p>I am a Clinical Psychologist registered with the HPCSA and BHF.</p>
@@ -1119,7 +1115,7 @@
     </section>
   </div>
 
-  <!-- CONTACT — background: #F8F4F0 (section 6, light) -->
+  <!-- CONTACT -->
   <div class="section-wrapper section-bg-light">
     <section id="portal" class="reveal">
       <div class="portal-container">
@@ -1182,25 +1178,36 @@
     </section>
   </div>
 
+  <!-- FOOTER -->
   <footer>
-
     <div class="footer-brand">
       <h4>Daniela Sounes</h4>
       <p
         style="text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--tan); margin-bottom: 0.75rem; font-weight: 600;">
-        Clinical Psychologist</p>
+        Clinical Psychologist
+      </p>
       <p style="font-size: 1rem;">77 11th Street, Parkmore<br>Sandton, Johannesburg, 2191</p>
     </div>
 
-    <!-- Column 2: Legal & links -->
-    <div class="footer-links-col">
-      <h5>Legal & Protection</h5>
-      <a href="terms.html">Terms of Use</a>
-      <a href="privacy.html">Privacy Notice</a>
-      <a href="index.html#portal">Contact Us</a>
+    <!-- Grouped Link Columns for Balanced Grid Layout -->
+    <div class="footer-grid-group">
+      <div class="footer-links-col">
+        <h5>Legal & Protection</h5>
+        <a href="terms.html">Terms of Use</a>
+        <a href="privacy.html">Privacy Notice</a>
+        <a href="index.html#portal">Contact Us</a>
+      </div>
+
+      <div class="footer-links-col">
+        <h5>Practice Documents</h5>
+        <a href="documents/Practice Information Designed.docx" download
+          style="color: var(--tan-lt); text-decoration: none; margin: 0 1rem; font-weight: 400;">Download Practice
+          Information</a>
+        <a href="documents/Adult Consent Form 2.docx" download
+          style="color: var(--tan-lt); text-decoration: none; margin: 0 1rem; font-weight: 400;">Download Consent Form</a>
+      </div>
     </div>
 
-    <!-- Column 3: Navigation Shortcuts -->
     <div class="footer-meta">
       <div class="footer-links-col" style="align-items: inherit;">
         <h5>Explore</h5>
